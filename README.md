@@ -16,3 +16,7 @@
 
 Use the commands by right clicking a folder in explorer.
 Command cannot be used directly from command palette
+
+## Usage
+
+![demo](https://raw.githubusercontent.com/SushanShakya/flutter_folder_structure_generator/main/assets/usage.gif)
