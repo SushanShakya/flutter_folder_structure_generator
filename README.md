@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="../assets/logo.png" height="100" alt="Bloc" />
+<img src="https://raw.githubusercontent.com/SushanShakya/flutter_folder_structure_generator/main/assets/logo.png" height="100" alt="Architecture Generator" />
 </p>
 
 ## Overview
