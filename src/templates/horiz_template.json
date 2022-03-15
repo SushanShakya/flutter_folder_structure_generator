@@ -1,0 +1,25 @@
+{
+    "src": {
+        "res": {
+            "colors": "file",
+            "strings": "file",
+            "styles": "file",
+            "dimens": "file"
+        },
+        "models": {},
+        "views": {
+            "components": {},
+            "home_view": "file"
+        },
+        "data": {},
+        "services": {
+            "network": {
+                "dio_inst": "file"
+            },
+            "storage": {
+                "prefs": "file"
+            }
+        },
+        "blocs": {}
+    }
+}
