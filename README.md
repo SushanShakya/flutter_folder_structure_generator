@@ -20,3 +20,14 @@ Command cannot be used directly from command palette
 ## Usage
 
 ![demo](https://raw.githubusercontent.com/SushanShakya/flutter_folder_structure_generator/main/assets/usage.gif)
+
+## Hidden Features
+
+Command :
+    Folder : Feature (Vertical)
+
+Using `form` or `forms` as feature name will generate code associated with forms.
+-> Provides `FormBuilder` Widget which can generate forms easily
+
+Using `bottom_nav` as feature name will generate code associated with Bottom Navigation.
+-> Provides `BottomNavView` widget which can be used as a screen
