@@ -1,0 +1,20 @@
+{
+    "bottom_nav": {
+        "components": {
+            "bottom_nav_widget": "file",
+            "tab_navigator": "file"
+        },
+        "fragments": {},
+        "views": {
+            "bottom_nav_view" : "file"
+        },
+        "models": {
+            "nav_item": "file"
+        },
+        "blocs": {
+            "navigation" : {
+                "navigation_cubit": "file"
+            }
+        }
+    }
+}

@@ -7,8 +7,8 @@
             "dimens": "file"
         },
         "models": {},
+        "components": {},
         "views": {
-            "components": {},
             "home_view": "file"
         },
         "data": {},

@@ -1,0 +1,16 @@
+{
+    "forms": {
+        "utils": {
+            "validator": "file"
+        },
+        "components": {
+            "form_builder": "file",
+            "password_field": "file"
+        },
+        "views": {},
+        "models": {
+            "form_item": "form_item"
+        },
+        "blocs": {}
+    }
+}

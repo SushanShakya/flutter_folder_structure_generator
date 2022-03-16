@@ -1,5 +1,7 @@
-import { existsSync, writeFileSync, mkdirSync, exists, PathLike } from "fs";
+import { existsSync, writeFileSync, mkdirSync, exists, PathLike, readFileSync } from "fs";
 import { Uri, window } from "vscode";
+import { resolve } from "path"
+import mappings from "../mappings/code_template_mapping"
 
 function createDirectory(targetDirectory: string) {
     if (!existsSync(targetDirectory)) {
@@ -11,6 +13,14 @@ function createFile(targetPath: string, content: string) {
     writeFileSync(targetPath, content, {
         "flag": "w+"
     })
+}
+
+function getContent(name: keyof Object): string {
+    let content: string = mappings[name]
+    if (typeof content == "undefined") {
+        content = ""
+    }
+    return content
 }
 
 export function generateTemplate(obj: Object, path: String) {
@@ -26,8 +36,11 @@ export function generateTemplate(obj: Object, path: String) {
         // console.log(full_path)
         // console.log(value)
         if (typeof value == "string") {
+            // Fetch Code if exists
+            let content = getContent(k)
+            console.log(content)
             // Generate a file
-            createFile(`${full_path}.dart`, "")
+            createFile(`${full_path}.dart`, content)
             // console.log("I am a file")
         } else if (typeof value == "object") {
             // Generate a Folder
