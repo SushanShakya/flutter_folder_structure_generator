@@ -6,7 +6,9 @@
             "styles": "file",
             "dimens": "file"
         },
-        "data": {},
+        "data": {
+            "fake_data": "file"
+        },
         "services": {
             "network": {
                 "dio_inst": "file"

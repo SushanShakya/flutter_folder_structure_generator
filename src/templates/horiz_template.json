@@ -11,7 +11,9 @@
         "views": {
             "home_view": "file"
         },
-        "data": {},
+        "data": {
+            "fake_data": "file"
+        },
         "services": {
             "network": {
                 "dio_inst": "file"
