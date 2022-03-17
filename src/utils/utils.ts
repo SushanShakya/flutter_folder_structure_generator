@@ -9,7 +9,7 @@ function createDirectory(targetDirectory: string) {
     }
 }
 
-function createFile(targetPath: string, content: string) {
+export function createFile(targetPath: string, content: string) {
     writeFileSync(targetPath, content, {
         "flag": "w+"
     })
@@ -38,7 +38,7 @@ export function generateTemplate(obj: Object, path: String) {
         if (typeof value == "string") {
             // Fetch Code if exists
             let content = getContent(k)
-            console.log(content)
+            // console.log(content)
             // Generate a file
             createFile(`${full_path}.dart`, content)
             // console.log("I am a file")

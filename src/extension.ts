@@ -1,5 +1,5 @@
 import * as vscode from "vscode"
-import { horizStruct, vertStruct, featStruct } from "./commands"
+import { horizStruct, vertStruct, featStruct, cleanMain } from "./commands"
 
 // Start of the Extension
 // -> Called when the extension is active
@@ -8,6 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.registerCommand("extension.featStruct", featStruct),
 		vscode.commands.registerCommand("extension.vertStruct", vertStruct),
 		vscode.commands.registerCommand("extension.horizStruct", horizStruct),
+		vscode.commands.registerCommand("extension.cleanMain", cleanMain),
 	)
 }
 

@@ -1,0 +1,19 @@
+{
+    "onboarding": {
+        "components": {
+            "onboarding_content_widget": "file",
+            "pagination": "file"
+        },
+        "views": {
+            "onboarding_view": "file"
+        },
+        "models": {
+            "onboarding_content": "file"
+        },
+        "blocs": {
+            "navigation": {
+                "navigation_cubit": "file"
+            }
+        }
+    }
+}

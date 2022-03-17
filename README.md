@@ -13,6 +13,7 @@
 | `Folder : Horizontal`   | Generate Horizonal Architecture  |
 | `Folder : Vertical` | Generate Vertical Architecture |
 | `Folder : Feature (Vertical)` | Generate sub-folders for a feature in verticle architecture  |
+| `Clean : main.dart` | Clean the defaul code for main.dart  |
 
 Use the commands by right clicking a folder in explorer.
 Command cannot be used directly from command palette
@@ -20,6 +21,10 @@ Command cannot be used directly from command palette
 ## Usage
 
 ![demo](https://raw.githubusercontent.com/SushanShakya/flutter_folder_structure_generator/main/assets/usage.gif)
+
+
+Clean : main.dart
+-> Right click on lib folder and click on Clean : main.dart
 
 ## Hidden Features
 
@@ -31,3 +36,6 @@ Using `form` or `forms` as feature name will generate code associated with forms
 
 Using `bottom_nav` as feature name will generate code associated with Bottom Navigation.
 -> Provides `BottomNavView` widget which can be used as a screen
+
+Using `onboarding` as feature name will generate code associated with Onboarding Screens.
+-> Provides `OnboardingView` widget which can be used as a screen

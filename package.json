@@ -2,7 +2,7 @@
 	"name": "flutter-folder-structure-generator",
 	"displayName": "Flutter Architecture Generator",
 	"description": "Extension to easily generate folder structre associated with flutter",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "SushanShakya",
 	"bugs": {
 		"url": "https://github.com/SushanShakya/flutter_folder_structure_generator/issues",
@@ -29,7 +29,8 @@
 	"activationEvents": [
 		"onCommand:extension.horizStruct",
 		"onCommand:extension.vertStruct",
-		"onCommand:extension.featStruct"
+		"onCommand:extension.featStruct",
+		"onCommand:extension.cleanMain"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -48,6 +49,11 @@
 				"command": "extension.horizStruct",
 				"title": "Folder: Horizontal",
 				"icon": "assets/logo.png"
+			},
+			{
+				"command": "extension.cleanMain",
+				"title": "Clean : main.dart",
+				"icon": "assets/logo.png"
 			}
 		],
 		"menus": {
@@ -65,6 +71,11 @@
 				{
 					"command": "extension.horizStruct",
 					"group": "structGroup@3",
+					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "extension.cleanMain",
+					"group": "mainGroup@1",
 					"when": "explorerResourceIsFolder"
 				}
 			]

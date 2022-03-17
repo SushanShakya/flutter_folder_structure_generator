@@ -21,3 +21,11 @@ export { tab_navigator } from "./features/bottom_nav/components/tab_navigator";
 export { nav_item } from "./features/bottom_nav/models/nav_item";
 export { bottom_nav_view } from "./features/bottom_nav/views/bottom_nav_view";
 // ---- Bottom Nav Exports
+
+
+// ---- Onboarding Nav Exports
+export { onboarding_content_widget } from './features/onboarding/components/onboarding_content_widget';
+export { pagination } from './features/onboarding/components/pagination';
+export { onboarding_content } from './features/onboarding/models/onboarding_content';
+export { onboarding_view } from './features/onboarding/views/onboarding_view';
+// ---- Onboarding Nav Exports

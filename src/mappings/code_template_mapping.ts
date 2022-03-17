@@ -18,4 +18,9 @@ mappings['tab_navigator'] = t.tab_navigator
 mappings['nav_item'] = t.nav_item
 mappings['bottom_nav_view'] = t.bottom_nav_view
 
+mappings['onboarding_content_widget'] = t.onboarding_content_widget
+mappings['pagination'] = t.pagination
+mappings['onboarding_content'] = t.onboarding_content
+mappings['onboarding_view'] = t.onboarding_view
+
 export default mappings
