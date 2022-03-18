@@ -6,6 +6,12 @@
             "styles": "file",
             "dimens": "file"
         },
+        "extensions": {
+            "date_extension": "file",
+            "time_extension": "file",
+            "int_extension": "file",
+            "str_extension": "file"
+        },
         "models": {},
         "components": {},
         "views": {

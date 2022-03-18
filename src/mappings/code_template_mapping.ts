@@ -23,4 +23,9 @@ mappings['pagination'] = t.pagination
 mappings['onboarding_content'] = t.onboarding_content
 mappings['onboarding_view'] = t.onboarding_view
 
+mappings['date_extension'] = t.date_extension
+mappings['time_extension'] = t.time_extension
+mappings['str_extension'] = t.str_extension
+mappings['int_extension'] = t.int_extension
+
 export default mappings
