@@ -39,3 +39,6 @@ Using `bottom_nav` as feature name will generate code associated with Bottom Nav
 
 Using `onboarding` as feature name will generate code associated with Onboarding Screens.<br>
     -> Provides `OnboardingView` widget which can be used as a screen
+
+Using `auth` as feature name will generate code associated with Authorization, Login and Register.<br>
+    -> Provides `AuthorizationBloc`, `RegisterCubit`, `LoginCubit`  widgets
