@@ -36,3 +36,24 @@ export { int_extension } from './extensions/int_extension';
 export { str_extension } from './extensions/str_extension';
 export { time_extension } from './extensions/time_extension';
 // ---- Extension Exports
+
+// ---- Authentication Exports
+export { authorization_bloc } from './features/auth/logic/authorization/authorization_bloc';
+export { authorization_event } from './features/auth/logic/authorization/authorization_event';
+export { authorization_state } from './features/auth/logic/authorization/authorization_state';
+
+export { login_cubit } from './features/auth/logic/login/login_cubit';
+export { login_state } from './features/auth/logic/login/login_state';
+
+export { register_cubit } from './features/auth/logic/register/register_cubit';
+export { register_state } from './features/auth/logic/register/register_state';
+
+export { auth_error } from './features/auth/models/auth_error';
+export { login_request } from './features/auth/models/login_request';
+export { register_request } from './features/auth/models/register_request';
+
+export { auth_repo } from './features/auth/repo/auth_repo';
+
+export { auth_error_helper } from './features/auth/utils/auth_error_helper';
+
+// ---- Authentication Exports

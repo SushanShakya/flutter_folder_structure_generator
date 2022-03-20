@@ -4,6 +4,7 @@ import * as template from "../templates/feat_template.json"
 import * as form_template from "../templates/features/form_template.json";
 import * as bot_nav_template from "../templates/features/bottom_nav_template.json";
 import * as onboarding_template from "../templates/features/onboarding_template.json";
+import * as auth_template from "../templates/features/auth_template.json";
 
 export const featStruct = async (uri: Uri) => {
     // [full_path] is the path where we generate the folder structure into.
@@ -30,6 +31,8 @@ export const featStruct = async (uri: Uri) => {
         new_template = bot_nav_template
     } else if (featureName === "onboarding") {
         new_template = onboarding_template
+    } else if (featureName === "auth") {
+        new_template = auth_template
     } else {
         new_template[featureName] = template
     }

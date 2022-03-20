@@ -28,5 +28,9 @@ class Prefs {
 
   static String? getString(String key) => _prefs.getString(key);
 
+  static deleteString(String key) async {
+    _prefs.remove(key);
+  }
+
 }
 `

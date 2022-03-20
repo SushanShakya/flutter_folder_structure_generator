@@ -1,0 +1,30 @@
+{
+    "auth": {
+        "blocs": {
+            "login": {
+                "login_cubit": "file",
+                "login_state": "file"
+            },
+            "register": {
+                "register_cubit": "file",
+                "register_state": "file"
+            },
+            "authorization": {
+                "authorization_bloc": "file",
+                "authorization_event": "file",
+                "authorization_state": "file"
+            }
+        },
+        "models": {
+            "auth_error": "file",
+            "login_request": "file",
+            "register_request": "file"
+        },
+        "repo": {
+            "auth_repo": "file"
+        },
+        "utils": {
+            "auth_error_helper": "file"
+        }
+    }
+}

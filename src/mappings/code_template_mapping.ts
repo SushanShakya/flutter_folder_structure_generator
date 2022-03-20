@@ -28,4 +28,17 @@ mappings['time_extension'] = t.time_extension
 mappings['str_extension'] = t.str_extension
 mappings['int_extension'] = t.int_extension
 
+mappings['authorization_bloc'] = t.authorization_bloc
+mappings['authorization_event'] = t.authorization_event
+mappings['authorization_state'] = t.authorization_state
+mappings['login_cubit'] = t.login_cubit
+mappings['login_state'] = t.login_state
+mappings['register_cubit'] = t.register_cubit
+mappings['register_state'] = t.register_state
+mappings['auth_error'] = t.auth_error
+mappings['login_request'] = t.login_request
+mappings['register_request'] = t.register_request
+mappings['auth_repo'] = t.auth_repo
+mappings['auth_error_helper'] = t.auth_error_helper
+
 export default mappings
