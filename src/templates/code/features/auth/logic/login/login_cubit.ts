@@ -1,9 +1,12 @@
 export let login_cubit = `import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import '../../../../../locator.dart';
 import '../../../../services/storage/prefs.dart';
 import '../../utils/auth_error_helper.dart';
 import '../../repo/auth_repo.dart';
+import '../../models/login_request.dart';
+import '../../models/auth_error.dart';
 
 part 'login_state.dart';
 

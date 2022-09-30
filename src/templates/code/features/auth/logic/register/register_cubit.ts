@@ -3,6 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import '../../utils/auth_error_helper.dart';
 import '../../repo/auth_repo.dart';
+import '../../models/register_request.dart';
+import '../../models/auth_error.dart';
+import '../../../../../locator.dart';
 
 part 'register_state.dart';
 

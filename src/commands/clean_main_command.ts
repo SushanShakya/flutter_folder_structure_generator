@@ -4,27 +4,27 @@ import { createFile } from "../utils/utils";
 
 export const cleanMain = async (uri: Uri) => {
     // [full_path] is the path where we generate the folder structure into.
-    let full_path: String;
+    let full_path: string;
 
     // Check for when user invokes command from Ctrl + Shift + p
-    if (typeof uri == "undefined") {
-        window.showErrorMessage("Please use command from explorer !")
-        return
+    if (typeof uri === "undefined") {
+        window.showErrorMessage("Please use command from explorer !");
+        return;
     } else {
-        full_path = uri.fsPath
+        full_path = uri.fsPath;
     }
 
-    var appName = await promptForName()
-    if ((typeof appName == "undefined") || (appName.trim() === "")) {
+    var appName = await promptForName();
+    if ((typeof appName === "undefined") || (appName.trim() === "")) {
         window.showErrorMessage("The App name cannot be empty !");
         return;
     }
 
     let mainPath = `${full_path}\\main.dart`;
-    let content = getCleanedMain(appName)
+    let content = getCleanedMain(appName);
 
-    createFile(mainPath, content)
-}
+    createFile(mainPath, content);
+};
 
 function promptForName(): Thenable<string | undefined> {
     const cubitNamePromptOptions: InputBoxOptions = {
