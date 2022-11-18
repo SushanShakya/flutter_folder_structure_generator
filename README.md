@@ -14,6 +14,8 @@
 | `Folder : Vertical` | Generate Vertical Architecture |
 | `Folder : Feature (Vertical)` | Generate sub-folders for a feature in verticle architecture  |
 | `Clean : main.dart` | Clean the defaul code for main.dart  |
+| `Clean Architecture` | Generate the Folder Structure for Clean Architecture  |
+| `Clean Architecture : Feature` | Genearte sub-folder for a feature in Clean Architecture  |
 
 Use the commands by right clicking a folder in explorer.<br>
 Command cannot be used directly from command palette

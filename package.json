@@ -2,7 +2,7 @@
 	"name": "flutter-folder-structure-generator",
 	"displayName": "Flutter Architecture Generator",
 	"description": "Extension to easily generate folder structre associated with flutter",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"publisher": "SushanShakya",
 	"bugs": {
 		"url": "https://github.com/SushanShakya/flutter_folder_structure_generator/issues",
@@ -30,7 +30,9 @@
 		"onCommand:extension.horizStruct",
 		"onCommand:extension.vertStruct",
 		"onCommand:extension.featStruct",
-		"onCommand:extension.cleanMain"
+		"onCommand:extension.cleanMain",
+		"onCommand:extension.cleanArchitecture",
+		"onCommand:extension.cleanArchitectureFeat"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -54,6 +56,16 @@
 				"command": "extension.cleanMain",
 				"title": "Clean : main.dart",
 				"icon": "assets/logo.png"
+			},
+			{
+				"command": "extension.cleanArchitecture",
+				"title": "Clean Architecture",
+				"icon": "assets/logo.png"
+			},
+			{
+				"command": "extension.cleanArchitectureFeat",
+				"title": "Clean Architecture: Feature",
+				"icon": "assets/logo.png"
 			}
 		],
 		"menus": {
@@ -71,6 +83,16 @@
 				{
 					"command": "extension.horizStruct",
 					"group": "structGroup@3",
+					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "extension.cleanArchitecture",
+					"group": "cleanGroup@3",
+					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "extension.cleanArchitectureFeat",
+					"group": "cleanGroup@3",
 					"when": "explorerResourceIsFolder"
 				},
 				{

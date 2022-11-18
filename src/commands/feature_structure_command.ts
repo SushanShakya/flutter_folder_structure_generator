@@ -18,7 +18,7 @@ export const featStruct = async (uri: Uri) => {
         full_path = uri.fsPath;
     }
 
-    var featureName = await promptForName();
+    let featureName = await promptForName();
     if ((typeof featureName === "undefined") || (featureName.trim() === "")) {
         window.showErrorMessage("The Feature name cannot be empty !");
         return;

@@ -1,0 +1,18 @@
+{
+    "data": {
+        "repo": {
+            "interface": {}
+        },
+        "models": {}
+    },
+    "domain": {
+        "entities": {},
+        "usecases": {}
+    },
+    "gui": {
+        "views": {},
+        "components": {},
+        "presenters": {},
+        "view_models": {}
+    }
+}
