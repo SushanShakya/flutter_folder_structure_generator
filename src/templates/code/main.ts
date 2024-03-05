@@ -1,3 +1,5 @@
+import { getUpperCamelCase, getProperName } from "./utils";
+
 export function getCleanedMain(appName: string): string {
     const upperCamel = getUpperCamelCase(appName)
     const properName = getProperName(appName)
@@ -18,23 +20,4 @@ class ${upperCamel} extends StatelessWidget {
     }
 }
 `;
-}
-
-function getFirstLetterCapital(text: string): string {
-    return text.charAt(0).toUpperCase() + text.slice(1);
-}
-
-function getUpperCamelCase(snakeCase: string): string {
-    let names = snakeCase.split("_");
-    let capitalized = names.map((v, i) => {
-        return getFirstLetterCapital(v);
-    })
-    return capitalized.join("")
-}
-function getProperName(snakeCase: string): string {
-    let names = snakeCase.split("_");
-    let capitalized = names.map((v, i) => {
-        return getFirstLetterCapital(v);
-    })
-    return capitalized.join(" ")
 }

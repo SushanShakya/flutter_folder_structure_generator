@@ -2,7 +2,7 @@
 	"name": "flutter-folder-structure-generator",
 	"displayName": "Flutter Architecture Generator",
 	"description": "Extension to easily generate folder structre associated with flutter",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"publisher": "SushanShakya",
 	"bugs": {
 		"url": "https://github.com/SushanShakya/flutter_folder_structure_generator/issues",
@@ -32,11 +32,17 @@
 		"onCommand:extension.featStruct",
 		"onCommand:extension.cleanMain",
 		"onCommand:extension.cleanArchitecture",
-		"onCommand:extension.cleanArchitectureFeat"
+		"onCommand:extension.cleanArchitectureFeat",
+		"onCommand:extension.generateEndpointCode"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
+			{
+				"command": "extension.generateEndpointCode",
+				"title": "Generate Endpoint Code",
+				"icon": "assets/logo.png"
+			},
 			{
 				"command": "extension.featStruct",
 				"title": "Folder: Feature (Vertical)",
@@ -99,6 +105,11 @@
 					"command": "extension.cleanMain",
 					"group": "mainGroup@1",
 					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "extension.generateEndpointCode",
+					"group": "ep@4",
+					"when": "explorerResourceIsFolder"
 				}
 			]
 		}
@@ -116,6 +127,7 @@
 	},
 	"devDependencies": {
 		"@types/glob": "^7.2.0",
+		"@types/lodash": "^4.14.202",
 		"@types/mkdirp": "^1.0.2",
 		"@types/mocha": "^9.1.0",
 		"@types/node": "14.x",
@@ -132,6 +144,7 @@
 		"webpack-cli": "^4.9.2"
 	},
 	"dependencies": {
+		"lodash": "^4.17.21",
 		"mkdirp": "^1.0.4"
 	}
 }

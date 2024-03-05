@@ -3,7 +3,7 @@ import { Uri, window } from "vscode";
 import path from "path";
 import mappings from "../mappings/code_template_mapping";
 
-function createDirectory(targetDirectory: string) {
+export function createDirectory(targetDirectory: string) {
     if (!existsSync(targetDirectory)) {
         mkdirSync(targetDirectory);
     }
