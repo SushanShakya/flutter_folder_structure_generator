@@ -72,6 +72,9 @@ export const generateEndpointCode = async (uri: Uri) => {
     let template = generateTemplate({ className, fnName, interfaceFileName: interfaceFile });
 
     try {
+        createDirectory(cubitPath);
+        createDirectory(interfacePath);
+        createDirectory(repoPath);
         createFile(path.join(cubitPath, cubitFile), template.cubit);
         createFile(path.join(interfacePath, interfaceFile), template.interfaceStr);
         createFile(path.join(repoPath, repoFile), template.repo);

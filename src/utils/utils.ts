@@ -5,7 +5,7 @@ import mappings from "../mappings/code_template_mapping";
 
 export function createDirectory(targetDirectory: string) {
     if (!existsSync(targetDirectory)) {
-        mkdirSync(targetDirectory);
+        mkdirSync(targetDirectory, { recursive: true });
     }
 }
 
