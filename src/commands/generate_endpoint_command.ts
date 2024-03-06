@@ -46,7 +46,7 @@ export const generateEndpointCode = async (uri: Uri) => {
         window.showErrorMessage("Please use command from explorer !");
         return;
     }
-    let full_path = uri.fsPath;
+    let dirPath = uri.fsPath;
 
     let className = await promptName({
         prompt: "Class Name",
@@ -61,7 +61,9 @@ export const generateEndpointCode = async (uri: Uri) => {
     if (!fnName) return;
 
     let classNameInSnake = upperCamelToSnake(className);
-    let dirPath = path.join(full_path, classNameInSnake)
+    let cubitPath = path.join(path.join(dirPath, "gui"), "presenters");
+    let interfacePath = path.join(path.join(path.join(dirPath, "data"), "repo"), "interface");
+    let repoPath = path.join(path.join(dirPath, "data"), "repo");
 
     let cubitFile = `${classNameInSnake}_cubit.dart`;
     let interfaceFile = `i${classNameInSnake}_repo.dart`;
@@ -69,9 +71,12 @@ export const generateEndpointCode = async (uri: Uri) => {
 
     let template = generateTemplate({ className, fnName, interfaceFileName: interfaceFile });
 
-    createDirectory(dirPath)
-
-    createFile(path.join(dirPath, cubitFile), template.cubit);
-    createFile(path.join(dirPath, interfaceFile), template.interfaceStr);
-    createFile(path.join(dirPath, repoFile), template.repo);
+    try {
+        createFile(path.join(cubitPath, cubitFile), template.cubit);
+        createFile(path.join(interfacePath, interfaceFile), template.interfaceStr);
+        createFile(path.join(repoPath, repoFile), template.repo);
+    } catch (e) {
+        console.log('---- Error while trying to create file');
+        console.log(e);
+    }
 }

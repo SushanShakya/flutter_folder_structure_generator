@@ -9,7 +9,7 @@ export function generateCubit({
 }): string {
   let cubitTemplate = `
 import 'package:warped_bloc/warped_bloc.dart';
-import '${interfaceFileName}';
+import '../../data/repo/interface/${interfaceFileName}';
 
 class ${className}Loaded extends DataState {
   const ${className}Loaded({required super.data});

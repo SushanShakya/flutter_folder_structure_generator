@@ -9,7 +9,7 @@ export function generateRepo({
 }): string {
   let repoTemplate = `
 import 'package:dio/dio.dart';
-import './${interfaceFileName}';
+import './interface/${interfaceFileName}';
 
 class ${className}Repo implements I${className}Repo {
   final Dio dio;
