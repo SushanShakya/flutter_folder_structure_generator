@@ -11,3 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 0.0.7
 
 > Adds Functionality to generate boilerplate code
+
+## 1.0.0
+
+> Generate Endpoint boilerplate compatible with Clean Architecture

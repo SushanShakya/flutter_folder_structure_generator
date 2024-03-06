@@ -81,5 +81,7 @@ export const generateEndpointCode = async (uri: Uri) => {
     } catch (e) {
         console.log('---- Error while trying to create file');
         console.log(e);
+        window.showErrorMessage("Failed to generate code");
+        return;
     }
 }
