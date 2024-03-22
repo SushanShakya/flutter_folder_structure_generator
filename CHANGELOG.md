@@ -19,3 +19,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 1.0.1
 
 > Add Url, Param Type, Return Type to Endpoint Generation
+
+## 1.0.2
+
+- Fix: Minor Issue on Import
+- Feat: Generate models if they are custom type
