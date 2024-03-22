@@ -1,17 +1,15 @@
-export function generateCubit({
-  className,
-  fnName,
-  interfaceFileName,
-}: {
-  className: string,
-  fnName: string,
-  interfaceFileName: string,
-}): string {
+import { TemplateMetadata } from "../../types/metadata"
+
+export function generateCubit(metadata: TemplateMetadata): string {
+
+  const { interfaceFileName, endpoint } = metadata;
+  const { className, fnName, returnType } = endpoint;
+
   let cubitTemplate = `
 import 'package:warped_bloc/warped_bloc.dart';
 import '../../data/repo/interface/${interfaceFileName}';
 
-class ${className}Loaded extends DataState {
+class ${className}Loaded extends DataState<${returnType}> {
   const ${className}Loaded({required super.data});
 }
 

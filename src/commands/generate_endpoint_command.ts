@@ -3,9 +3,10 @@ import { InputBoxOptions, Uri, window } from "vscode";
 import { generateCubit } from "../templates/endpoint/cubit";
 import { generateRepo } from "../templates/endpoint/repo";
 import { generateInterface } from "../templates/endpoint/interface";
-import { upperCamelToSnake } from "../templates/code/utils";
+import { getFirstLetterCapital, upperCamelToSnake } from "../templates/code/utils";
 import { createDirectory, createFile } from "../utils/utils";
 import path from "path";
+import { EndpointMetadata, TemplateMetadata } from "../types/metadata";
 
 type EndpointTemplate = {
     cubit: string,
@@ -13,18 +14,12 @@ type EndpointTemplate = {
     repo: string
 }
 
-const generateTemplate = ({
-    className,
-    fnName,
-    interfaceFileName,
-}: {
-    className: string,
-    fnName: string,
-    interfaceFileName: string,
-}): EndpointTemplate => {
-    let cubit = generateCubit({ className, fnName, interfaceFileName });
-    let repo = generateRepo({ className, fnName, interfaceFileName });
-    let interfaceStr = generateInterface({ className, fnName });
+
+
+const generateTemplate = (metadata: TemplateMetadata): EndpointTemplate => {
+    let cubit = generateCubit(metadata);
+    let repo = generateRepo(metadata);
+    let interfaceStr = generateInterface(metadata);
     return {
         cubit,
         interfaceStr,
@@ -41,6 +36,40 @@ const promptName = async (options: InputBoxOptions): Promise<string | undefined>
     return name;
 }
 
+
+
+const handlePrompts = async (): Promise<EndpointMetadata | undefined> => {
+
+    let url = await promptName({
+        prompt: "Endpoint Url",
+        placeHolder: "Defaults to /",
+    });
+
+    let fnName = await promptName({
+        prompt: "Function Name",
+        placeHolder: "In Lower Camel Case",
+    });
+    if (!fnName) return;
+
+    let className = getFirstLetterCapital(fnName);
+
+    let paramType = await window.showInputBox({
+        prompt: "Param Type",
+        placeHolder: "In Upper Camel Case (Optional)",
+    });
+
+    let returnType = await promptName({
+        prompt: "Return Type",
+        placeHolder: "In Upper Camel Case",
+    });
+    if (!returnType) return;
+
+    return {
+        url: url ?? '/',
+        className, fnName, paramType, returnType
+    }
+}
+
 export const generateEndpointCode = async (uri: Uri) => {
     if (typeof uri === 'undefined') {
         window.showErrorMessage("Please use command from explorer !");
@@ -48,17 +77,11 @@ export const generateEndpointCode = async (uri: Uri) => {
     }
     let dirPath = uri.fsPath;
 
-    let className = await promptName({
-        prompt: "Class Name",
-        placeHolder: "In Upper Camel Case",
-    });
-    if (!className) return;
-
-    let fnName = await promptName({
-        prompt: "Function Name",
-        placeHolder: "In Lower Camel Case",
-    });
-    if (!fnName) return;
+    let prompts = await handlePrompts();
+    if (!prompts) return;
+    const {
+        className,
+    } = prompts;
 
     let classNameInSnake = upperCamelToSnake(className);
     let cubitPath = path.join(path.join(dirPath, "gui"), "presenters");
@@ -69,7 +92,9 @@ export const generateEndpointCode = async (uri: Uri) => {
     let interfaceFile = `i${classNameInSnake}_repo.dart`;
     let repoFile = `${classNameInSnake}_repo.dart`;
 
-    let template = generateTemplate({ className, fnName, interfaceFileName: interfaceFile });
+    let metadata = { endpoint: prompts, interfaceFileName: interfaceFile };
+
+    let template = generateTemplate(metadata);
 
     try {
         createDirectory(cubitPath);
