@@ -8,5 +8,10 @@ export type EndpointMetadata = {
 
 export type TemplateMetadata = {
     endpoint: EndpointMetadata,
-    interfaceFileName: string
+    param: string,
+    interfaceFileName: string,
+    paramFileName: string,
+    responseFileName: string,
+    generateParamCode: boolean,
+    generateResponseCode: boolean,
 }

@@ -7,11 +7,15 @@ import { getFirstLetterCapital, upperCamelToSnake } from "../templates/code/util
 import { createDirectory, createFile } from "../utils/utils";
 import path from "path";
 import { EndpointMetadata, TemplateMetadata } from "../types/metadata";
+import { generateDataClass } from "../templates/endpoint/data_class";
+import { isPrimitive } from "../utils/type_utils";
 
 type EndpointTemplate = {
     cubit: string,
     interfaceStr: string,
-    repo: string
+    repo: string,
+    param: string,
+    response: string,
 }
 
 
@@ -20,10 +24,15 @@ const generateTemplate = (metadata: TemplateMetadata): EndpointTemplate => {
     let cubit = generateCubit(metadata);
     let repo = generateRepo(metadata);
     let interfaceStr = generateInterface(metadata);
+    let request = generateDataClass(metadata.endpoint.paramType ?? "");
+    let response = generateDataClass(metadata.endpoint.returnType ?? "");
+
     return {
         cubit,
         interfaceStr,
-        repo
+        repo,
+        param: request,
+        response,
     }
 }
 
@@ -35,8 +44,6 @@ const promptName = async (options: InputBoxOptions): Promise<string | undefined>
     }
     return name;
 }
-
-
 
 const handlePrompts = async (): Promise<EndpointMetadata | undefined> => {
 
@@ -57,6 +64,10 @@ const handlePrompts = async (): Promise<EndpointMetadata | undefined> => {
         prompt: "Param Type",
         placeHolder: "In Upper Camel Case (Optional)",
     });
+
+    if (isNil(paramType) || paramType.trim() === "") {
+        paramType = undefined;
+    }
 
     let returnType = await promptName({
         prompt: "Return Type",
@@ -81,18 +92,37 @@ export const generateEndpointCode = async (uri: Uri) => {
     if (!prompts) return;
     const {
         className,
+        paramType,
+        returnType
     } = prompts;
 
+    let param = prompts.paramType ? `${prompts.paramType} param` : "";
+
     let classNameInSnake = upperCamelToSnake(className);
+    let paramNameInSnake = upperCamelToSnake(paramType ?? "");
+    let returnTypeNameInSnake = upperCamelToSnake(returnType);
+
+    let generateParamCode = !isPrimitive(paramType ?? "int");
+    let generateResponseCode = !isPrimitive(returnType);
+
     let cubitPath = path.join(path.join(dirPath, "gui"), "presenters");
     let interfacePath = path.join(path.join(path.join(dirPath, "data"), "repo"), "interface");
     let repoPath = path.join(path.join(dirPath, "data"), "repo");
+    let modelPath = path.join(path.join(dirPath, "data"), "models");
 
     let cubitFile = `${classNameInSnake}_cubit.dart`;
     let interfaceFile = `i${classNameInSnake}_repo.dart`;
     let repoFile = `${classNameInSnake}_repo.dart`;
+    let paramFile = `${paramNameInSnake}.dart`;
+    let responseFile = `${returnTypeNameInSnake}.dart`;
 
-    let metadata = { endpoint: prompts, interfaceFileName: interfaceFile };
+
+    let metadata: TemplateMetadata = {
+        endpoint: prompts, interfaceFileName: interfaceFile, param,
+        generateParamCode, generateResponseCode,
+        paramFileName: paramFile,
+        responseFileName: responseFile,
+    };
 
     let template = generateTemplate(metadata);
 
@@ -100,9 +130,18 @@ export const generateEndpointCode = async (uri: Uri) => {
         createDirectory(cubitPath);
         createDirectory(interfacePath);
         createDirectory(repoPath);
+        if (generateParamCode || generateResponseCode) {
+            createDirectory(modelPath);
+        }
         createFile(path.join(cubitPath, cubitFile), template.cubit);
         createFile(path.join(interfacePath, interfaceFile), template.interfaceStr);
         createFile(path.join(repoPath, repoFile), template.repo);
+        if (generateParamCode) {
+            createFile(path.join(modelPath, paramFile), template.param);
+        }
+        if (generateResponseCode) {
+            createFile(path.join(modelPath, responseFile), template.response);
+        }
     } catch (e) {
         console.log('---- Error while trying to create file');
         console.log(e);
