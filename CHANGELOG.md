@@ -24,3 +24,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Fix: Minor Issue on Import
 - Feat: Generate models if they are custom type
+
+## 1.0.3
+
+- Feat: Add Generate Endpoint support for injectable
