@@ -3,7 +3,7 @@ import { TemplateMetadata } from "../../types/metadata"
 export function generateCubit(metadata: TemplateMetadata): string {
 
 
-  const { interfaceFileName, endpoint, param, generateParamCode, generateResponseCode, paramFileName, responseFileName } = metadata;
+  const { interfaceFileName, endpoint, param, generateParamCode, generateResponseCode, paramFileName, responseFileName, injectable } = metadata;
   const { className, fnName, returnType } = endpoint;
   const paramImport = generateParamCode ? `import '../../data/models/${paramFileName}';` : "";
   const responseImport = generateResponseCode ? `import '../../data/models/${responseFileName}';` : "";
@@ -18,6 +18,7 @@ class ${className}Loaded extends DataState<${returnType}> {
   const ${className}Loaded({required super.data});
 }
 
+${injectable ? "" : ""}
 class ${className}Cubit extends AsyncCubit {
   final I${className}Repo repo;
   ${className}Cubit({

@@ -81,7 +81,9 @@ const handlePrompts = async (): Promise<EndpointMetadata | undefined> => {
     }
 }
 
-export const generateEndpointCode = async (uri: Uri) => {
+export const generateEndpointCode = async (uri: Uri, {
+    injectable = false,
+}: { injectable: boolean }) => {
     if (typeof uri === 'undefined') {
         window.showErrorMessage("Please use command from explorer !");
         return;
@@ -122,6 +124,7 @@ export const generateEndpointCode = async (uri: Uri) => {
         generateParamCode, generateResponseCode,
         paramFileName: paramFile,
         responseFileName: responseFile,
+        injectable,
     };
 
     let template = generateTemplate(metadata);
@@ -149,3 +152,7 @@ export const generateEndpointCode = async (uri: Uri) => {
         return;
     }
 }
+
+export const generateEndpointCodeInjectable = async (uri: Uri) => generateEndpointCode(uri, {
+    injectable: true,
+});

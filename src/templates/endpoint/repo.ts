@@ -20,7 +20,7 @@ export function generateRepo(metadata: TemplateMetadata): string {
 
   let param = metadata.endpoint.paramType ? `${metadata.endpoint.paramType} param` : "";
   let returnDefinition = generateReturnDefinition(metadata.endpoint.returnType);
-  const { generateParamCode, generateResponseCode, paramFileName, responseFileName } = metadata;
+  const { generateParamCode, generateResponseCode, paramFileName, responseFileName, injectable } = metadata;
 
   const paramImport = generateParamCode ? `import '../models/${paramFileName}';` : "";
   const responseImport = generateResponseCode ? `import '../models/${responseFileName}';` : "";
@@ -32,6 +32,7 @@ import './interface/${metadata.interfaceFileName}';
 ${paramImport}
 ${responseImport}
 
+${injectable ? `@LazySingleton(as: I${metadata.endpoint.className}Repo)` : ""}
 class ${metadata.endpoint.className}Repo implements I${metadata.endpoint.className}Repo {
   final Dio dio;
 

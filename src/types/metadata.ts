@@ -14,4 +14,5 @@ export type TemplateMetadata = {
     responseFileName: string,
     generateParamCode: boolean,
     generateResponseCode: boolean,
+    injectable: boolean,
 }

@@ -7,6 +7,7 @@ import {
 	cleanArchitecture,
 	cleanArchitectureFeat,
 	generateEndpointCode,
+	generateEndpointCodeInjectable,
 } from "./commands"
 
 // Start of the Extension
@@ -20,6 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.registerCommand("extension.cleanArchitectureFeat", cleanArchitectureFeat),
 		vscode.commands.registerCommand("extension.cleanMain", cleanMain),
 		vscode.commands.registerCommand("extension.generateEndpointCode", generateEndpointCode),
+		vscode.commands.registerCommand("extension.generateEndpointCodeInjectable", generateEndpointCodeInjectable),
 	)
 }
 

@@ -33,7 +33,8 @@
 		"onCommand:extension.cleanMain",
 		"onCommand:extension.cleanArchitecture",
 		"onCommand:extension.cleanArchitectureFeat",
-		"onCommand:extension.generateEndpointCode"
+		"onCommand:extension.generateEndpointCode",
+		"onCommand:extension.generateEndpointCodeInjectable"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -41,6 +42,11 @@
 			{
 				"command": "extension.generateEndpointCode",
 				"title": "Generate Endpoint Code",
+				"icon": "assets/logo.png"
+			},
+			{
+				"command": "extension.generateEndpointCodeInjectable",
+				"title": "Generate Endpoint Code (Injectable)",
 				"icon": "assets/logo.png"
 			},
 			{
@@ -108,6 +114,11 @@
 				},
 				{
 					"command": "extension.generateEndpointCode",
+					"group": "ep@4",
+					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "extension.generateEndpointCodeInjectable",
 					"group": "ep@4",
 					"when": "explorerResourceIsFolder"
 				}
