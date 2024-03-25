@@ -4,27 +4,36 @@ All notable changes to the "flutter-folder-structure-generator" extension will b
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## 1.0.4
 
-- Initial release
+- Fix: List case and void case
 
-## 0.0.7
+## 1.0.3
 
-> Adds Functionality to generate boilerplate code
-
-## 1.0.0
-
-> Generate Endpoint boilerplate compatible with Clean Architecture
-
-## 1.0.1
-
-> Add Url, Param Type, Return Type to Endpoint Generation
+- Feat: Add Generate Endpoint support for injectable
 
 ## 1.0.2
 
 - Fix: Minor Issue on Import
 - Feat: Generate models if they are custom type
 
-## 1.0.3
+## 1.0.1
 
-- Feat: Add Generate Endpoint support for injectable
+- Add Url, Param Type, Return Type to Endpoint Generation
+
+## 1.0.0
+
+- Generate Endpoint boilerplate compatible with Clean Architecture
+
+## 0.0.7
+
+- Adds Functionality to generate boilerplate code
+
+## [Unreleased]
+
+- Initial release
+
+
+
+
+

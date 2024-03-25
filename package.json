@@ -2,7 +2,7 @@
 	"name": "flutter-folder-structure-generator",
 	"displayName": "Flutter Architecture Generator",
 	"description": "Extension to easily generate folder structre associated with flutter",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"publisher": "SushanShakya",
 	"bugs": {
 		"url": "https://github.com/SushanShakya/flutter_folder_structure_generator/issues",
