@@ -1,5 +1,5 @@
 export const isPrimitive = (type: string): boolean => {
-    let primitives = ["String", "bool", "int", "double", "Map", "List", "num"]
+    let primitives = ["String", "bool", "int", "double", "Map", "List", "num", "void"]
     return primitives.reduce<boolean>((a, b) => a || type.startsWith(b), false);
 }
 
