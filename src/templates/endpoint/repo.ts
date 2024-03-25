@@ -1,19 +1,26 @@
 import { TemplateMetadata } from "../../types/metadata";
-
-const extractListType = (returnType: string) => {
-  let interim = returnType.replace("List<", "");
-  return interim.substring(0, interim.length - 1);
-}
+import { extractListType } from "../../utils/type_utils";
 
 const generateReturnDefinition = (returnType: string): string => {
   let returnDefinition = "data";
 
   if (returnType.startsWith("List<")) {
     let listType = extractListType(returnType);
-    returnDefinition = `List<${listType}>.generate(data.map((e) => ${listType}.fromMap(e)))`;
+    returnDefinition = `List<${listType}>.from(data.map((e) => ${listType}.fromMap(e)))`;
   }
 
   return returnDefinition;
+}
+
+const generateBody = (url: string, returnType: string, returnDefinition: string): string => {
+  if (returnType === 'void') {
+    return `await dio.get("${url}");`
+  }
+  return `
+    final res = await dio.get("${url}");
+    final data = res.data;
+    return ${returnDefinition};
+  `;
 }
 
 export function generateRepo(metadata: TemplateMetadata): string {
@@ -24,6 +31,8 @@ export function generateRepo(metadata: TemplateMetadata): string {
 
   const paramImport = generateParamCode ? `import '../models/${paramFileName}';` : "";
   const responseImport = generateResponseCode ? `import '../models/${responseFileName}';` : "";
+
+  const body = generateBody(metadata.endpoint.url, metadata.endpoint.returnType, returnDefinition);
 
 
   let repoTemplate = `
@@ -42,9 +51,7 @@ class ${metadata.endpoint.className}Repo implements I${metadata.endpoint.classNa
 
   @override
   Future<${metadata.endpoint.returnType}> ${metadata.endpoint.fnName}(${param}) async {
-    final res = await dio.get("${metadata.endpoint.url}");
-    final data = res.data;
-    return ${returnDefinition};
+    ${body}
   }
 }
 `

@@ -8,7 +8,7 @@ import { createDirectory, createFile } from "../utils/utils";
 import path from "path";
 import { EndpointMetadata, TemplateMetadata } from "../types/metadata";
 import { generateDataClass } from "../templates/endpoint/data_class";
-import { isPrimitive } from "../utils/type_utils";
+import { extractListType, isPrimitive } from "../utils/type_utils";
 
 type EndpointTemplate = {
     cubit: string,
@@ -52,13 +52,18 @@ const handlePrompts = async (): Promise<EndpointMetadata | undefined> => {
         placeHolder: "Defaults to /",
     });
 
+    let className = await promptName({
+        prompt: "Class Name",
+        placeHolder: "In Upper Camel Case",
+    });
+    if (!className) return;
+
     let fnName = await promptName({
         prompt: "Function Name",
         placeHolder: "In Lower Camel Case",
     });
     if (!fnName) return;
 
-    let className = getFirstLetterCapital(fnName);
 
     let paramType = await window.showInputBox({
         prompt: "Param Type",
@@ -81,6 +86,14 @@ const handlePrompts = async (): Promise<EndpointMetadata | undefined> => {
     }
 }
 
+const generateDataClassFileName = (type: string): string => {
+    if (type.startsWith("List<")) {
+        let listType = extractListType(type);
+        return generateDataClassFileName(listType);
+    }
+    return upperCamelToSnake(type);
+}
+
 export const generateEndpointCode = async (uri: Uri, {
     injectable = false,
 }: { injectable: boolean }) => {
@@ -101,8 +114,8 @@ export const generateEndpointCode = async (uri: Uri, {
     let param = prompts.paramType ? `${prompts.paramType} param` : "";
 
     let classNameInSnake = upperCamelToSnake(className);
-    let paramNameInSnake = upperCamelToSnake(paramType ?? "");
-    let returnTypeNameInSnake = upperCamelToSnake(returnType);
+    let paramNameInSnake = generateDataClassFileName(paramType ?? "");
+    let returnTypeNameInSnake = generateDataClassFileName(returnType);
 
     let generateParamCode = !isPrimitive(paramType ?? "int");
     let generateResponseCode = !isPrimitive(returnType);

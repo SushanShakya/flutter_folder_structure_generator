@@ -5,5 +5,15 @@ export function generateDataClass(type: string): string {
     if (className.startsWith("List")) {
         className = extractListType(type);
     }
-    return `class ${className} {}`;
+    return `class ${className} {
+        ${className}();
+
+        factory ${className}.fromMap(Map<String, dynamic> map){
+            return ${className}();
+        }
+        
+        Map<String, dynamic> toMap() {
+            return {};
+        }
+    }`;
 }
