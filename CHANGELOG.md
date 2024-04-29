@@ -4,6 +4,10 @@ All notable changes to the "flutter-folder-structure-generator" extension will b
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.0.5
+
+- Fix: Injectable Generate Endpoint Code Syntax
+
 ## 1.0.4
 
 - Fix: List case and void case

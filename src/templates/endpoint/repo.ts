@@ -38,6 +38,7 @@ export function generateRepo(metadata: TemplateMetadata): string {
   let repoTemplate = `
 import 'package:dio/dio.dart';
 import './interface/${metadata.interfaceFileName}';
+${injectable ? "import 'package:injectable/injectable.dart';" : ""}
 ${paramImport}
 ${responseImport}
 

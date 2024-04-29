@@ -1,4 +1,4 @@
-import { TemplateMetadata } from "../../types/metadata"
+import { TemplateMetadata } from "../../types/metadata";
 
 export function generateCubit(metadata: TemplateMetadata): string {
 
@@ -19,6 +19,8 @@ export function generateCubit(metadata: TemplateMetadata): string {
   let cubitTemplate = `
 import 'package:warped_bloc/warped_bloc.dart';
 import '../../data/repo/interface/${interfaceFileName}';
+${injectable ? "import 'package:injectable/injectable.dart';" : ""}
+
 ${paramImport}
 ${responseImport}
 
@@ -26,7 +28,7 @@ class ${className}Loaded extends DataState<${returnType}> {
   const ${className}Loaded({required super.data});
 }
 
-${injectable ? "" : ""}
+${injectable ? "@injectable" : ""}
 class ${className}Cubit extends AsyncCubit {
   final I${className}Repo repo;
   ${className}Cubit({
